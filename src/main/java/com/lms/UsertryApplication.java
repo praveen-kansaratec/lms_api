@@ -14,9 +14,6 @@ public class UsertryApplication implements CommandLineRunner{
     @Autowired
     public QuizRepository quizRepository;
 
-	
-	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(UsertryApplication.class, args);
 	}
