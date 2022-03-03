@@ -41,9 +41,15 @@ public class QuestionController {
 	    //add question
 	    @PostMapping("/")
 	    public ResponseEntity<Question> add(@RequestBody Question question) {
+	    	
+//	    	Quiz quizObj = new Quiz();
+//	    	quizObj.setId(question.getQuiz_id());
+//	    	question.setQuiz(quizObj);
+	    	
 	    	 System.out.println("Addition of question Done successfully");
 	        return ResponseEntity.ok(this.service.addQuestion(question));
 	    }
+
 
 	    //update the question
 	    @PutMapping("/")
@@ -54,17 +60,17 @@ public class QuestionController {
 
 	    //get all question of any quid
 	    @GetMapping("/quiz/{id}")
-	    public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("id") Long id) {
+	    public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("id") Long Id) {
 //	        Quiz quiz = new Quiz();
 //	        quiz.setqId(qid);
 //	        Set<Question> questionsOfQuiz = this.service.getQuestionsOfQuiz(quiz);
 //	        return ResponseEntity.ok(questionsOfQuiz);
 
-	        Quiz quiz = this.quizService.getQuiz(id);
+	        Quiz quiz = this.quizService.getQuiz(Id);
 	        Set<Question> questions = quiz.getQuestions();
 	        List list = new ArrayList(questions);
-	        if (list.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
-	            list = list.subList(0, Integer.parseInt(quiz.getNumberOfQuestions() + 1));
+	        if (list.size() > Integer.parseInt(quiz.getNumber_of_questions())) {
+	            list = list.subList(0, Integer.parseInt(quiz.getNumber_of_questions() + 1));
 	        }
 	        Collections.shuffle(list);
 	        System.out.println("Getting questions by specified id from quiz");
@@ -75,9 +81,9 @@ public class QuestionController {
 
 
 	    @GetMapping("/quiz/all/{id}")
-	    public ResponseEntity<?> getQuestionsOfQuizAdmin(@PathVariable("id") Long id) {
+	    public ResponseEntity<?> getQuestionsOfQuizAdmin(@PathVariable("id") Long Id) {
 	        Quiz quiz = new Quiz();
-	        quiz.setqId(id);
+	        quiz.setId(Id);
 	        Set<Question> questionsOfQuiz = this.service.getQuestionsOfQuiz(quiz);
 	        System.out.println("Getting all questions from quiz");
 	        return ResponseEntity.ok(questionsOfQuiz);
@@ -101,6 +107,11 @@ public class QuestionController {
 	    	System.out.println("Deleting question by id");
 	        this.service.deleteQuestion(Id);
 	    }
+	    
+	    
+	    
+	    
+	   
 
 
 	    //eval quiz
@@ -112,14 +123,14 @@ public class QuestionController {
 	        int attempted = 0;
 	        for (Question q : questions) {
 	            //single questions
-	            Question question = this.service.get(q.getQuesId());
+	            Question question = this.service.get(q.getId());
 	            if (question.getAnswer().equals(q.getGivenAnswer())) {
 	                //correct
 	                correctAnswers++;
 
-	                double marksSingle = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
+	             //   double marksSingle = Double.parseDouble(questions.get(0).getQuiz().getMax_marks()) / questions.size();
 	                //       this.questions[0].quiz.maxMarks / this.questions.length;
-	                marksGot += marksSingle;
+	             //   marksGot += marksSingle;
 
 	            }
 

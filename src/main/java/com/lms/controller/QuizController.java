@@ -54,22 +54,22 @@ public class QuizController {
 
     //get single quiz
     @GetMapping("/{id}")
-    public Quiz quiz(@PathVariable("id") Long id) {
+    public Quiz quiz(@PathVariable("id") Long Id) {
     	System.out.println("Getting quiz by id");
-        return this.quizService.getQuiz(id);
+        return this.quizService.getQuiz(Id);
     }
 
     //delete the quiz
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long Id) {
     	System.out.println("Deleted Successfully");
-        this.quizService.deleteQuiz(id);
+        this.quizService.deleteQuiz(Id);
     }
 
     @GetMapping("/category/{id}")
-    public List<Quiz> getQuizzesOfCategory(@PathVariable("id") Long id) {
+    public List<Quiz> getQuizzesOfCategory(@PathVariable("id") Long Id) {
         Category category = new Category();
-        category.setCid(id);
+        category.setCid(Id);
         System.out.println("Getting Category");
         return this.quizService.getQuizzesOfCategory(category);
     }
@@ -83,9 +83,9 @@ public class QuizController {
 
     //get active quizzes of category
     @GetMapping("/category/active/{id}")
-    public List<Quiz> getActiveQuizzes(@PathVariable("id") Long id) {
+    public List<Quiz> getActiveQuizzes(@PathVariable("id") Long Id) {
         Category category = new Category();
-        category.setCid(id);
+        category.setCid(Id);
         System.out.println("getting active quizes of category");
         return this.quizService.getActiveQuizzesOfCategory(category);
     }

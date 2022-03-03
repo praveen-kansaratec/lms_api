@@ -33,16 +33,16 @@ public class Category {
 	private Set<Quiz> quizzes = new LinkedHashSet<>();
 	
 	
-private Long User_Created;
-	
-
-	private Date date_created;
-	
-
-
-	private Date date_Modified;
-	
-	private Long User_Modified;
+//private Long User_Created;
+//	
+//
+//	private Date date_created;
+//	
+//
+//
+//	private Date date_Modified;
+//	
+//	private Long User_Modified;
 	
 	
 	
@@ -59,17 +59,16 @@ private Long User_Created;
 	public Long getCid() {
 		return id;
 	}
-
-	public Category(String title, String description, Set<Quiz> quizzes, Long user_Created, Date date_created,
-			Date date_Modified, Long user_Modified) {
+//Long user_Created, Date date_created,Date date_Modified, Long user_Modified
+	public Category(String title, String description, Set<Quiz> quizzes) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.quizzes = quizzes;
-		User_Created = user_Created;
-		this.date_created = date_created;
-		this.date_Modified = date_Modified;
-		User_Modified = user_Modified;
+//		User_Created = user_Created;
+//		this.date_created = date_created;
+//		this.date_Modified = date_Modified;
+//		User_Modified = user_Modified;
 	}
 
 	public void setCid(Long cid) {
@@ -108,39 +107,39 @@ private Long User_Created;
 		this.quizzes = quizzes;
 	}
 
-	public Long getUser_Created() {
-		return User_Created;
-	}
-
-	public void setUser_Created(Long user_Created) {
-		User_Created = user_Created;
-	}
-
-	public Date getDate_created() {
-		return date_created;
-	}
-
-	public void setDate_created(Date date_created) {
-		this.date_created = date_created;
-	}
-
-	public Date getDate_Modified() {
-		return date_Modified;
-	}
-
-	public void setDate_Modified(Date date_Modified) {
-		this.date_Modified = date_Modified;
-	}
-
-	public Long getUser_Modified() {
-		return User_Modified;
-	}
-
-	public void setUser_Modified(Long user_Modified) {
-		User_Modified = user_Modified;
-	}
-	
-	
+//	public Long getUser_Created() {
+//		return User_Created;
+//	}
+//
+//	public void setUser_Created(Long user_Created) {
+//		User_Created = user_Created;
+//	}
+//
+//	public Date getDate_created() {
+//		return date_created;
+//	}
+//
+//	public void setDate_created(Date date_created) {
+//		this.date_created = date_created;
+//	}
+//
+//	public Date getDate_Modified() {
+//		return date_Modified;
+//	}
+//
+//	public void setDate_Modified(Date date_Modified) {
+//		this.date_Modified = date_Modified;
+//	}
+//
+//	public Long getUser_Modified() {
+//		return User_Modified;
+//	}
+//
+//	public void setUser_Modified(Long user_Modified) {
+//		User_Modified = user_Modified;
+//	}
+//	
+//	
 	
 	
 	
