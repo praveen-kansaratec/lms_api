@@ -9,6 +9,7 @@ import com.lms.model.exam.Quiz;
 
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
-    Set<Question> findByQuiz(Quiz quiz);
+
+	Set<Question> findByQuizId(Long quiz_id);
 
 }

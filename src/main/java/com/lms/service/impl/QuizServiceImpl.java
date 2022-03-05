@@ -1,7 +1,6 @@
 package com.lms.service.impl;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -37,7 +36,7 @@ public class QuizServiceImpl implements QuizService{
 	public Set<Quiz> getQuizzes() {
 		  return new HashSet<>(this.quizRepository.findAll());
 	}
-
+	
 	@Override
 	public Quiz getQuiz(Long quizId) {
 		 return this.quizRepository.findById(quizId).get();
@@ -45,25 +44,34 @@ public class QuizServiceImpl implements QuizService{
 
 	@Override
 	public void deleteQuiz(Long quizId) {
-		Quiz quiz = new Quiz();
-		quiz.setId(quizId);
 		 this.quizRepository.deleteById(quizId);
 		
 	}
+	
+	
+	
+	
+	
 
-	@Override
-	public List<Quiz> getQuizzesOfCategory(Category category) {
-		return this.quizRepository.findBycategory(category);
-	}
+//	@Override
+//	public Set<Quiz> getQuizzes() {
+//		// TODO Auto-generated method stub
+//		return new HashSet<>(this.quizRepository.findAll());
+//	}
 
-	@Override
-	public List<Quiz> getActiveQuizzes() {
-		 return this.quizRepository.findByActive(true);
-	}
-
-	@Override
-	public List<Quiz> getActiveQuizzesOfCategory(Category c) {
-		return this.quizRepository.findByCategoryAndActive(c, true);
-	}
+//	@Override
+//	public List<Quiz> getQuizzesOfCategory(Category category) {
+//		return this.quizRepository.findBycategory(category);
+//	}
+//
+//	@Override
+//	public List<Quiz> getActiveQuizzes() {
+//		 return this.quizRepository.findByActive(true);
+//	}
+//
+//	@Override
+//	public List<Quiz> getActiveQuizzesOfCategory(Category c) {
+//		return this.quizRepository.findByCategoryAndActive(c, true);
+//	}
 
 }

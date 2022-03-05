@@ -17,17 +17,23 @@ public interface QuizService {
 
 	    public Quiz updateQuiz(Quiz quiz);
 
-	    public Set<Quiz> getQuizzes();
+	   
 
+//	    public Quiz getQuiz(Long quizId);
+//	    public void deleteQuiz(Long quizId);
+	    
+	    
 	    public Quiz getQuiz(Long quizId);
 	    public void deleteQuiz(Long quizId);
 
+	   public Set<Quiz> getQuizzes();
+	    
 
-	    public List<Quiz> getQuizzesOfCategory(Category category);
-
-	    public List<Quiz> getActiveQuizzes();
-
-	    public List<Quiz> getActiveQuizzesOfCategory(Category c);
-	
-	
+//	    public List<Quiz> getQuizzesOfCategory(Category category);
+//
+//	    public List<Quiz> getActiveQuizzes();
+//
+//	    public List<Quiz> getActiveQuizzesOfCategory(Category c);
+//	
+//	
 }

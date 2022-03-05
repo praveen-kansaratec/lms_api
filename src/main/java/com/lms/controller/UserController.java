@@ -1,16 +1,11 @@
 package com.lms.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.transaction.Status;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
 import com.lms.model.exam.User;
-import com.lms.repo.UserRepository;
 import com.lms.service.UserService;
 
 @CrossOrigin(origins = "*")
@@ -42,12 +35,46 @@ public class UserController {
 //	}
 
 	//iss vale me error he
-	@GetMapping("/user/{id}")
-	public User getUserById(@PathVariable long id) {
-		System.out.println("getting user by id");
-		return lDAO.getById(id);
-	}
+//	@GetMapping("/user/{id}")
+//	public User getUserById(@PathVariable long id) {
+//		System.out.println("getting user by id");
+//		return lDAO.getById(id);
+//	}
 
+	@GetMapping("/user/{id}")
+	public ResponseEntity<Map> getUserById(@PathVariable("id") long id) {
+		 Map<String, Object> response = new HashMap<>();
+		
+		 User userObj = lDAO.getById(id);
+			System.out.println("getting user by id");
+			if(userObj != null)
+			{
+				response.put("data", userObj);
+				response.put("status","GETTING USER DETAILS SUCCESSFULLY");			
+			}
+			else
+			{
+				response.put("status","FAIL");
+				response.put("error","CAN NOT FIND USER");
+			}
+			return	new ResponseEntity<>(response,HttpStatus.OK);	
+		}
+
+		
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//registration 
 //	@PostMapping("/user")
 //	public String saveUser(@RequestBody User log) {
@@ -116,17 +143,7 @@ public class UserController {
 //	    return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 //	}
 //	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@DeleteMapping("/user/{id}")
 	public void delete(@PathVariable("id") Long id) {
 		System.out.println("deleting user by id successfully");
@@ -134,7 +151,7 @@ public class UserController {
 
 	}
 	
-
+	
 }
 
 

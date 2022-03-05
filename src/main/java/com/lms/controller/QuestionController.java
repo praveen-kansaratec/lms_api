@@ -1,12 +1,12 @@
 package com.lms.controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.lms.model.exam.Question;
-import com.lms.model.exam.Quiz;
 import com.lms.service.QuestionService;
-import com.lms.service.QuizService;
+
 
 
 
@@ -35,71 +35,132 @@ public class QuestionController {
 	 @Autowired
 	    private QuestionService service;
 
-	    @Autowired
-	    private QuizService quizService;
+	
 
-	    //add question
 	    @PostMapping("/")
-	    public ResponseEntity<Question> add(@RequestBody Question question) {
-	    	
-//	    	Quiz quizObj = new Quiz();
-//	    	quizObj.setId(question.getQuiz_id());
-//	    	question.setQuiz(quizObj);
-	    	
-	    	 System.out.println("Addition of question Done successfully");
-	        return ResponseEntity.ok(this.service.addQuestion(question));
-	    }
-
-
+	    public ResponseEntity<Map> add(@RequestBody Question question) {
+		  Map<String, Object> response = new HashMap<>();
+		  Question question1 = this.service.addQuestion(question);
+	        System.out.println("Added question successfully");
+	        if(question1 != null)
+			{
+				response.put("data", question1);
+				response.put("status","ADDED QUESTION SUCCESSFULLY");			
+			}
+			else
+			{
+				response.put("status","FAIL");
+				response.put("error","CAN NOT ADD QUESTION");
+			}
+			return	new ResponseEntity<>(response,HttpStatus.OK);	
+		
+	    } 
+	    
+	    
+//	    //add question
+//	    @PostMapping("/add/")
+//	    public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
+//	    	System.out.println("Addition in question Done successfully");
+//	        return ResponseEntity.ok(this.service.updateQuestion(question));
+//	    }
+	  //add question
+	    @PostMapping("/add/")
+	    public ResponseEntity<Map> addQuestion(@RequestBody Question question) {
+	    	Map<String, Object> response = new HashMap<>();
+	    	Question question1 = this.service.addQuestion(question);
+	    	System.out.println("Addition in question Done successfully");
+	    	if(question1 != null)
+			{
+				response.put("data", question1);
+				response.put("status","ADDED QUESTION SUCCESSFULLY");			
+			}
+			else
+			{
+				response.put("status","FAIL");
+				response.put("error","CAN NOT ADD");
+			}
+			return	new ResponseEntity<>(response,HttpStatus.OK);	
+		
+	    } 
+	    
 	    //update the question
 	    @PutMapping("/")
-	    public ResponseEntity<Question> update(@RequestBody Question question) {
-	    	System.out.println("Updation in question Done successfully");
-	        return ResponseEntity.ok(this.service.updateQuestion(question));
-	    }
-
-	    //get all question of any quid
-	    @GetMapping("/quiz/{id}")
-	    public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("id") Long Id) {
-//	        Quiz quiz = new Quiz();
-//	        quiz.setqId(qid);
-//	        Set<Question> questionsOfQuiz = this.service.getQuestionsOfQuiz(quiz);
+	    public ResponseEntity<Map> update(@RequestBody Question question) {
+	    	Map<String, Object> response = new HashMap<>();
+	    	Question question1 = this.service.updateQuestion(question);
+	    	System.out.println("Updation in question Done successfully");	      
+	    	if(question1 != null)
+			{
+				response.put("data", question1);
+				response.put("status","UPDATION IN QUESTION DONE SUCCESSFULLY");			
+			}
+			else
+			{
+				response.put("status","FAIL");
+				response.put("error","CAN NOT ADD");
+			}
+			return	new ResponseEntity<>(response,HttpStatus.OK);	
+		
+	    } 
+	    
+	    
+//	    @GetMapping("/quiz/{id}")
+//	    public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("id") Long quiz_id) {
+//	       
+//	     
+//	        Set<Question> questionsOfQuiz = this.service.getQuestionsByQuizId(quiz_id);
+//	    
+//	        System.out.println("Getting questions by specified id from quiz");
 //	        return ResponseEntity.ok(questionsOfQuiz);
+//
+//	    }
 
-	        Quiz quiz = this.quizService.getQuiz(Id);
-	        Set<Question> questions = quiz.getQuestions();
-	        List list = new ArrayList(questions);
-	        if (list.size() > Integer.parseInt(quiz.getNumber_of_questions())) {
-	            list = list.subList(0, Integer.parseInt(quiz.getNumber_of_questions() + 1));
-	        }
-	        Collections.shuffle(list);
-	        System.out.println("Getting questions by specified id from quiz");
-	        return ResponseEntity.ok(list);
+	    @GetMapping("/quiz/{id}")
+	    public ResponseEntity<Map> getQuestionsOfQuiz(@PathVariable("id") Long quiz_id) {
+	    	Map<String, Object> response = new HashMap<>();
+	    	//Question question1 = this.service.updateQuestion(question);
+	    	  Set<Question> questionsOfQuiz = this.service.getQuestionsByQuizId(quiz_id);
+	    	//System.out.println("Updation in question Done successfully");	      
+	    	  System.out.println("Getting questions by specified id from quiz");
+	    	  if(questionsOfQuiz != null)
+			{
+				response.put("data", questionsOfQuiz);
+				response.put("status","GETTING SUCCESSFULLY");			
+			}
+			else
+			{
+				response.put("status","FAIL");
+				response.put("error","CAN NOT LOAD");
+			}
+			return	new ResponseEntity<>(response,HttpStatus.OK);	
+		
+	    }  
+
+	    
+	    
+	    
+	    
+//	    //update the question
+//	    @PutMapping("/")
+//	    public ResponseEntity<Question> update(@RequestBody Question question) {
+//	    	System.out.println("Updation in question Done successfully");
+//	        return ResponseEntity.ok(this.service.updateQuestion(question));
+//	    }
+
+	    //get all question of any quiz
+//	    @GetMapping("/quiz/{id}")
+//	    public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("id") Long quiz_id) {
+//	       
+//	     
+//	        Set<Question> questionsOfQuiz = this.service.getQuestionsByQuizId(quiz_id);
+//	    
+//	        System.out.println("Getting questions by specified id from quiz");
+//	        return ResponseEntity.ok(questionsOfQuiz);
+//
+//	    }
 
 
-	    }
-
-
-	    @GetMapping("/quiz/all/{id}")
-	    public ResponseEntity<?> getQuestionsOfQuizAdmin(@PathVariable("id") Long Id) {
-	        Quiz quiz = new Quiz();
-	        quiz.setId(Id);
-	        Set<Question> questionsOfQuiz = this.service.getQuestionsOfQuiz(quiz);
-	        System.out.println("Getting all questions from quiz");
-	        return ResponseEntity.ok(questionsOfQuiz);
-
-//	        return ResponseEntity.ok(list);
-
-
-	    }
-
-
-	    //get single question
-	    @GetMapping("/{Id}")
-	    public Question get(@PathVariable("Id") Long Id) {
-	    	System.out.println("Getting question by id");
-	        return this.service.getQuestion(Id);
-	    }
+//
 
 	    //delete question
 	    @DeleteMapping("/{Id}")
@@ -108,12 +169,7 @@ public class QuestionController {
 	        this.service.deleteQuestion(Id);
 	    }
 	    
-	    
-	    
-	    
-	   
-
-
+	
 	    //eval quiz
 	    @PostMapping("/eval-quiz")
 	    public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions) {

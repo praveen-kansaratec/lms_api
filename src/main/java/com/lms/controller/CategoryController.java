@@ -128,11 +128,18 @@ public class CategoryController {
 
     //delete category
     @DeleteMapping("/{Id}")
-    public void deleteCategory(@PathVariable("Id") Long Id) {
+    public void delete(@PathVariable("Id") Long Id) {
     	 System.out.println("Deletion of specified one is Done successfully");
         this.categoryService.deleteCategory(Id);
     }
-	
+    
+//    //delete question
+//    @DeleteMapping("/{Id}")
+//    public void delete(@PathVariable("Id") Long Id) {
+//    	System.out.println("Deleting question by id");
+//        this.service.deleteQuestion(Id);
+//    }
+    
 	
 
 }

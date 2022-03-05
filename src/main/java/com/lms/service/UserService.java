@@ -15,8 +15,6 @@ public interface UserService {
 	 
 	 User getById(long id);
 
-	 //User authenticateuser(String username, String password);
-	 
 	 User authenticateuser(String username, String password);
 
 	 List<User> save_details(String username, String password);

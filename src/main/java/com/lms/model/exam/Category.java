@@ -1,10 +1,8 @@
 package com.lms.model.exam;
 
-import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,9 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,10 +21,14 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String title;
-	private String description;
 	
-	@OneToMany(mappedBy = "category",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@NotEmpty
+	private String title;
+	
+	@NotEmpty
+	private String description;
+	//,cascade = CascadeType.ALL
+	@OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<Quiz> quizzes = new LinkedHashSet<>();
 	
@@ -56,9 +56,7 @@ public class Category {
 
 	
 	//getter setter
-	public Long getCid() {
-		return id;
-	}
+	
 //Long user_Created, Date date_created,Date date_Modified, Long user_Modified
 	public Category(String title, String description, Set<Quiz> quizzes) {
 		super();
@@ -71,9 +69,6 @@ public class Category {
 //		User_Modified = user_Modified;
 	}
 
-	public void setCid(Long cid) {
-		this.id = id;
-	}
 
 	public String getTitle() {
 		return title;

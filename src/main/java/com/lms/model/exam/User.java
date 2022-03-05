@@ -7,8 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 
@@ -18,57 +17,32 @@ import javax.validation.constraints.Size;
 public class User {
 
 	
-//	 public static ResponseEntity<Object> generateResponse(HttpStatus status, boolean error,String message, Object responseObj) {
-//	        Map<String, Object> map = new HashMap<String, Object>();
-//	        try {
-//	            map.put("timestamp", new Date());
-//	            map.put("status", status.value());
-//	            map.put("isSuccess", error);
-//	            map.put("message", message);
-//	            map.put("data", responseObj);
-//
-//	            return new ResponseEntity<Object>(map,status);
-//	        } catch (Exception e) {
-//	            map.clear();
-//	            map.put("timestamp", new Date());
-//	            map.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
-//	            map.put("isSuccess",false);
-//	            map.put("message", e.getMessage());
-//	            map.put("data", null);
-//	            return new ResponseEntity<Object>(map,status);
-//	        }
-//	    }
-//	
-//	
-//	
-//	
-//	
-//	
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	
-	@NotNull
+	@NotEmpty
 	@Size(min = 2, max = 30)
 	private String username;
 	
-	@NotNull
+	@NotEmpty
 	@Column(unique = true)
 	private String password;
 	
-	@NotNull
+	@NotEmpty
 	private String first_name;
 	
-	@NotNull
+	@NotEmpty
 	private String last_name;
 	
-	@NotNull
+	@NotEmpty
 	@Email
 	private String email;
 	
-	@NotNull
+	@NotEmpty
 	private String phone;
 	
 	private String role = "NORMAL";
