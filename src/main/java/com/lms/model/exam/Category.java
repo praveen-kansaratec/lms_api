@@ -27,23 +27,10 @@ public class Category {
 	
 	@NotEmpty
 	private String description;
-	//,cascade = CascadeType.ALL
+	
 	@OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<Quiz> quizzes = new LinkedHashSet<>();
-	
-	
-//private Long User_Created;
-//	
-//
-//	private Date date_created;
-//	
-//
-//
-//	private Date date_Modified;
-//	
-//	private Long User_Modified;
-	
 	
 	
 	//default constructor
@@ -52,24 +39,15 @@ public class Category {
 	}
 
 	//parameterized constructor
-	
-
-	
-	//getter setter
-	
-//Long user_Created, Date date_created,Date date_Modified, Long user_Modified
-	public Category(String title, String description, Set<Quiz> quizzes) {
+	Category(String title, String description, Set<Quiz> quizzes) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.quizzes = quizzes;
-//		User_Created = user_Created;
-//		this.date_created = date_created;
-//		this.date_Modified = date_Modified;
-//		User_Modified = user_Modified;
+
 	}
 
-
+	//getter setter
 	public String getTitle() {
 		return title;
 	}
@@ -101,41 +79,5 @@ public class Category {
 	public void setQuizzes(Set<Quiz> quizzes) {
 		this.quizzes = quizzes;
 	}
-
-//	public Long getUser_Created() {
-//		return User_Created;
-//	}
-//
-//	public void setUser_Created(Long user_Created) {
-//		User_Created = user_Created;
-//	}
-//
-//	public Date getDate_created() {
-//		return date_created;
-//	}
-//
-//	public void setDate_created(Date date_created) {
-//		this.date_created = date_created;
-//	}
-//
-//	public Date getDate_Modified() {
-//		return date_Modified;
-//	}
-//
-//	public void setDate_Modified(Date date_Modified) {
-//		this.date_Modified = date_Modified;
-//	}
-//
-//	public Long getUser_Modified() {
-//		return User_Modified;
-//	}
-//
-//	public void setUser_Modified(Long user_Modified) {
-//		User_Modified = user_Modified;
-//	}
-//	
-//	
-	
-	
-	
+		
 }

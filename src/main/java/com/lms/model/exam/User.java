@@ -10,20 +10,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-
-
 @Entity
 @Table(name="users")
 public class User {
-
-	
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	
+		
 	@NotEmpty
 	@Size(min = 2, max = 30)
 	private String username;
@@ -118,9 +112,6 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
-	
-	}
+}
 	
 	

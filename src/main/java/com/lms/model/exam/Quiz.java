@@ -1,9 +1,5 @@
 package com.lms.model.exam;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,10 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Quiz {
@@ -37,16 +30,10 @@ public class Quiz {
 	private String number_of_questions;
 
 	private boolean active = false;
-	// add..
-//,, cascade = { CascadeType.ALL }
-	//, cascade = { CascadeType.MERGE }
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
 
-	
-//	@OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = { CascadeType.ALL } )
-//	@JsonIgnore
-//	private Set<Question> questions = new HashSet<>(); 
 	
 	public Quiz() {
 
@@ -95,14 +82,6 @@ public class Quiz {
 	public boolean isActive() {
 		return active;
 	}
-
-//	public Set<Question> getQuestions() {
-//		return questions;
-//	}
-//
-//	public void setQuestions(Set<Question> questions) {
-//		this.questions = questions;
-//	}
 
 	public void setActive(boolean active) {
 		this.active = active;

@@ -33,12 +33,6 @@ public class QuizController {
     private QuizService quizService;
 
     //add quiz service
-//    @PostMapping("/")
-//    public ResponseEntity<Quiz> add(@RequestBody Quiz quiz) {
-//    	System.out.println("Adding quiz");
-//        return ResponseEntity.ok(this.quizService.addQuiz(quiz));
-//    }
-    
 	 @PostMapping("/")
 	    public ResponseEntity<Map> add(@RequestBody Quiz quiz) {
 	    	Map<String, Object> response = new HashMap<>();
@@ -60,15 +54,7 @@ public class QuizController {
     
   
     //update quiz
-//
-//    @PutMapping("/")
-//    public ResponseEntity<Quiz> update(@RequestBody Quiz quiz) {
-//    	System.out.println("Updating quiz");
-//        return ResponseEntity.ok(this.quizService.updateQuiz(quiz));
-//    }
-    
-
-	    @PutMapping("/")
+    @PutMapping("/")
 	    public ResponseEntity<Map> update(@RequestBody Quiz quiz) {
 	    	Map<String, Object> response = new HashMap<>();
 	    	Quiz quiz1 = this.quizService.updateQuiz(quiz); 
@@ -88,12 +74,6 @@ public class QuizController {
 	    } 
 
     //get quiz
-//    @GetMapping("/")
-//    public ResponseEntity<?> quizzes() {
-//    	System.out.println("Getting quiz");
-//        return ResponseEntity.ok(this.quizService.getQuizzes());
-//    }
-
     @GetMapping("/")
     public ResponseEntity<Map> getQuizzes() {
     	Map<String, Object> response = new HashMap<>();
@@ -132,14 +112,6 @@ public class QuizController {
 		return	new ResponseEntity<>(response,HttpStatus.OK);	
 	
     } 
- 
- 
-//    //get single quiz
-//    @GetMapping("/{id}")
-//    public Quiz quiz(@PathVariable("id") Long Id) {
-//    	System.out.println("Getting quiz by id");
-//        return this.quizService.getQuiz(Id);
-//    }
 
     //delete the quiz
     @DeleteMapping("/{id}")
@@ -147,35 +119,6 @@ public class QuizController {
     	System.out.println("Deleted Successfully");
         this.quizService.deleteQuiz(Id);
     }
-
-   
-   
-    
-//    @GetMapping("/category/{id}")
-//    public List<Quiz> getQuizzesOfCategory(@PathVariable("id") Long Id) {
-//        Category category = new Category();
-//        category.setCid(Id);
-//        System.out.println("Getting Category");
-//        return this.quizService.getQuizzesOfCategory(category);
-//    }
-//
-//    //get active quizzes
-//    @GetMapping("/active")
-//    public List<Quiz> getActiveQuizzes() {
-//    	System.out.println("getting active quizes");
-//        return this.quizService.getActiveQuizzes();
-//    }
-//
-//    //get active quizzes of category
-//    @GetMapping("/category/active/{id}")
-//    public List<Quiz> getActiveQuizzes(@PathVariable("id") Long Id) {
-//        Category category = new Category();
-//        category.setCid(Id);
-//        System.out.println("getting active quizes of category");
-//        return this.quizService.getActiveQuizzesOfCategory(category);
-//    }
-//
-//	
-//	
+	
 
 }
